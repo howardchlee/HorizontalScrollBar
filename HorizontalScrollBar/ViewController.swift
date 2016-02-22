@@ -10,22 +10,27 @@ import UIKit
 
 public class ViewController: UIViewController {
 
-    @IBOutlet weak var horizontalCollectionView: UICollectionView!
-    
+    @IBOutlet weak var horizontalCollectionView: TastePickingScrollBar!
+
     private var selectedItems: [UIImage] = []
 
     override public func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         horizontalCollectionView.dataSource = self
+        let layout = horizontalCollectionView.collectionViewLayout as! TastePickingScrollBarFlowLayout
+        let height = horizontalCollectionView.bounds.height
+        layout.itemSize = CGSizeMake(height, height)
+        horizontalCollectionView.collectionViewLayout = layout
     }
 
     @IBAction func buttonTapped(sender: UIButton) {
         if let image = sender.imageView?.image {
+            let newIndexPath = NSIndexPath(forItem: selectedItems.count, inSection: 0)
             selectedItems.append(image)
-//            horizontalCollectionView.reloadData()
-            UIView.setAnimationsEnabled(false)
-            horizontalCollectionView.insertItemsAtIndexPaths([NSIndexPath(forItem: selectedItems.count - 1, inSection: 0)])
+            UIView.animateWithDuration(1, delay: 0, usingSpringWithDamping: 0.55, initialSpringVelocity: 1, options: [], animations: { () -> Void in
+                self.horizontalCollectionView.insertItemsAtIndexPaths([newIndexPath])
+                }, completion: nil)
         }
     }
 }
@@ -36,11 +41,8 @@ extension ViewController: UICollectionViewDataSource {
     }
 
     public func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = horizontalCollectionView.dequeueReusableCellWithReuseIdentifier("circularCell", forIndexPath: indexPath) as! CircularCollectionViewCell
-        cell.image = selectedItems[indexPath.item]
-        UIView.setAnimationsEnabled(true)
-        cell.animateInsert()
+        let cell = horizontalCollectionView.dequeueReusableCellWithReuseIdentifier("circularCell", forIndexPath: indexPath) as! CircularImageCollectionViewCell
+        cell.image = self.selectedItems[indexPath.item]
         return cell
     }
 }
-

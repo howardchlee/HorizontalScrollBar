@@ -12,7 +12,7 @@
 		9266FE921C7694FB0004F2F2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9266FE901C7694FB0004F2F2 /* Main.storyboard */; };
 		9266FE941C7694FB0004F2F2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9266FE931C7694FB0004F2F2 /* Assets.xcassets */; };
 		9266FE971C7694FB0004F2F2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9266FE951C7694FB0004F2F2 /* LaunchScreen.storyboard */; };
-		9266FE9F1C7695130004F2F2 /* CircularCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9266FE9E1C7695130004F2F2 /* CircularCollectionViewCell.swift */; };
+		9266FEA61C7BC4440004F2F2 /* TastePickingScrollBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9266FEA51C7BC4440004F2F2 /* TastePickingScrollBar.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,7 +23,7 @@
 		9266FE931C7694FB0004F2F2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9266FE961C7694FB0004F2F2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9266FE981C7694FB0004F2F2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9266FE9E1C7695130004F2F2 /* CircularCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircularCollectionViewCell.swift; sourceTree = "<group>"; };
+		9266FEA51C7BC4440004F2F2 /* TastePickingScrollBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TastePickingScrollBar.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,7 +40,6 @@
 		9266FE801C7694FB0004F2F2 = {
 			isa = PBXGroup;
 			children = (
-				9266FE9E1C7695130004F2F2 /* CircularCollectionViewCell.swift */,
 				9266FE8B1C7694FB0004F2F2 /* HorizontalScrollBar */,
 				9266FE8A1C7694FB0004F2F2 /* Products */,
 			);
@@ -63,6 +62,7 @@
 				9266FE931C7694FB0004F2F2 /* Assets.xcassets */,
 				9266FE951C7694FB0004F2F2 /* LaunchScreen.storyboard */,
 				9266FE981C7694FB0004F2F2 /* Info.plist */,
+				9266FEA51C7BC4440004F2F2 /* TastePickingScrollBar.swift */,
 			);
 			path = HorizontalScrollBar;
 			sourceTree = "<group>";
@@ -138,9 +138,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9266FEA61C7BC4440004F2F2 /* TastePickingScrollBar.swift in Sources */,
 				9266FE8F1C7694FB0004F2F2 /* ViewController.swift in Sources */,
 				9266FE8D1C7694FB0004F2F2 /* AppDelegate.swift in Sources */,
-				9266FE9F1C7695130004F2F2 /* CircularCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -290,6 +290,7 @@
 				9266FE9D1C7694FB0004F2F2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
