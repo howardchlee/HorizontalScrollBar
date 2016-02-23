@@ -111,11 +111,13 @@ public class TastePickingScrollBarFlowLayout: UICollectionViewFlowLayout {
     
     override public func initialLayoutAttributesForAppearingItemAtIndexPath(itemIndexPath: NSIndexPath) -> UICollectionViewLayoutAttributes? {
         let attributes = super.initialLayoutAttributesForAppearingItemAtIndexPath(itemIndexPath)
-        attributes?.transform = CGAffineTransformMakeScale(0.1, 0.1)
-        attributes?.alpha = 1.0
-        if itemIndexPath.item > 0 {
-            if attributes?.frame.maxX > collectionView?.bounds.maxX {
-                attributes?.frame = layoutAttributesForItemAtIndexPath(NSIndexPath(forItem: itemIndexPath.row - 1, inSection: 0))!.frame
+        if inserting {
+            attributes?.transform = CGAffineTransformMakeScale(0.1, 0.1)
+            attributes?.alpha = 1.0
+            if itemIndexPath.item > 0 {
+                if attributes?.frame.maxX > collectionView?.bounds.maxX {
+                    attributes?.frame = layoutAttributesForItemAtIndexPath(NSIndexPath(forItem: itemIndexPath.row - 1, inSection: 0))!.frame
+                }
             }
         }
         return attributes

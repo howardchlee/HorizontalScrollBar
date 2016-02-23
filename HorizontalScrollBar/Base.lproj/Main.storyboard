@@ -18,35 +18,35 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DIt-Rr-pCj" userLabel="shibaButton">
-                                <rect key="frame" x="40" y="50" width="120" height="120"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DIt-Rr-pCj" userLabel="redButton">
+                                <rect key="frame" x="40" y="50" width="80" height="80"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="120" id="Oli-UX-Hxo"/>
-                                    <constraint firstAttribute="width" constant="120" id="sgf-Bu-dVW"/>
+                                    <constraint firstAttribute="height" constant="80" id="Oli-UX-Hxo"/>
+                                    <constraint firstAttribute="width" constant="80" id="sgf-Bu-dVW"/>
                                 </constraints>
-                                <state key="normal" image="shiba"/>
+                                <state key="normal" image="Red"/>
                                 <connections>
                                     <action selector="buttonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="vte-hl-xsS"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RTB-77-uKT" userLabel="okButton">
-                                <rect key="frame" x="320" y="50" width="120" height="120"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RTB-77-uKT" userLabel="orangeButton">
+                                <rect key="frame" x="240" y="50" width="80" height="80"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="120" id="erC-5g-VUH"/>
-                                    <constraint firstAttribute="width" constant="120" id="tqs-Hu-eEb"/>
+                                    <constraint firstAttribute="height" constant="80" id="erC-5g-VUH"/>
+                                    <constraint firstAttribute="width" constant="80" id="tqs-Hu-eEb"/>
                                 </constraints>
-                                <state key="normal" image="ok"/>
+                                <state key="normal" image="Orange"/>
                                 <connections>
                                     <action selector="buttonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="FXQ-Zi-aU7"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lo1-FL-kzB" userLabel="lionButton">
-                                <rect key="frame" x="180" y="50" width="120" height="120"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lo1-FL-kzB" userLabel="greenButton">
+                                <rect key="frame" x="140" y="50" width="80" height="80"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="120" id="V1k-H2-i1h"/>
-                                    <constraint firstAttribute="width" constant="120" id="l0C-Wi-kM2"/>
+                                    <constraint firstAttribute="height" constant="80" id="V1k-H2-i1h"/>
+                                    <constraint firstAttribute="width" constant="80" id="l0C-Wi-kM2"/>
                                 </constraints>
-                                <state key="normal" image="lion"/>
+                                <state key="normal" image="Green"/>
                                 <connections>
                                     <action selector="buttonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="9C7-D2-3aI"/>
                                 </connections>
@@ -58,18 +58,70 @@
                                     <constraint firstAttribute="height" constant="60" id="7xF-ro-O9s"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xwk-h0-qdO" userLabel="blueButton">
+                                <rect key="frame" x="40" y="180" width="80" height="80"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="3Ih-aB-OEW"/>
+                                    <constraint firstAttribute="width" constant="80" id="SlN-PH-hS8"/>
+                                </constraints>
+                                <state key="normal" image="Blue"/>
+                                <connections>
+                                    <action selector="buttonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bMl-J8-kqn"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NTH-A2-p5G" userLabel="pinkButton">
+                                <rect key="frame" x="140" y="180" width="80" height="80"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="80" id="T7N-Ul-Olx"/>
+                                    <constraint firstAttribute="height" constant="80" id="fQ6-hc-8Cj"/>
+                                </constraints>
+                                <state key="normal" image="Pink"/>
+                                <connections>
+                                    <action selector="buttonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="OS5-cg-lrk"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XDr-gV-jj8" userLabel="yellowButton">
+                                <rect key="frame" x="240" y="180" width="80" height="80"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="80" id="UoP-lp-lt0"/>
+                                    <constraint firstAttribute="height" constant="80" id="WvQ-6A-jfT"/>
+                                </constraints>
+                                <state key="normal" image="Yellow"/>
+                                <connections>
+                                    <action selector="buttonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="gau-SE-OZ1"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TjR-UY-D7p" userLabel="brownButton">
+                                <rect key="frame" x="240" y="310" width="80" height="80"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="D1T-VA-gXM"/>
+                                    <constraint firstAttribute="width" constant="80" id="GQe-A5-6R8"/>
+                                </constraints>
+                                <state key="normal" image="Brown"/>
+                                <connections>
+                                    <action selector="buttonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Kyg-UK-4rj"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="DIt-Rr-pCj" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" constant="50" id="4oH-lH-iHm"/>
+                            <constraint firstItem="TjR-UY-D7p" firstAttribute="top" secondItem="XDr-gV-jj8" secondAttribute="bottom" constant="50" id="8BK-9k-rsP"/>
+                            <constraint firstItem="xwk-h0-qdO" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="20" id="EsA-eZ-2on"/>
+                            <constraint firstItem="XDr-gV-jj8" firstAttribute="leading" secondItem="NTH-A2-p5G" secondAttribute="trailing" constant="20" id="FHL-Rx-EPU"/>
+                            <constraint firstItem="XDr-gV-jj8" firstAttribute="top" secondItem="NTH-A2-p5G" secondAttribute="top" id="Pih-xb-G3K"/>
                             <constraint firstItem="DIt-Rr-pCj" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="20" id="RhJ-80-cd5"/>
+                            <constraint firstItem="TjR-UY-D7p" firstAttribute="leading" secondItem="XDr-gV-jj8" secondAttribute="leading" id="WFQ-ih-sIm"/>
                             <constraint firstItem="RTB-77-uKT" firstAttribute="top" secondItem="Lo1-FL-kzB" secondAttribute="top" id="Yg1-Xe-vOX"/>
                             <constraint firstItem="RTB-77-uKT" firstAttribute="leading" secondItem="Lo1-FL-kzB" secondAttribute="trailing" constant="20" id="bxG-Fw-on5"/>
+                            <constraint firstItem="xwk-h0-qdO" firstAttribute="top" secondItem="DIt-Rr-pCj" secondAttribute="bottom" constant="50" id="dn0-h8-5N8"/>
                             <constraint firstItem="Lo1-FL-kzB" firstAttribute="leading" secondItem="DIt-Rr-pCj" secondAttribute="trailing" constant="20" id="eEv-zB-Ba6"/>
                             <constraint firstAttribute="trailingMargin" secondItem="aY0-CE-hDX" secondAttribute="trailing" id="gso-hm-giM"/>
+                            <constraint firstItem="NTH-A2-p5G" firstAttribute="leading" secondItem="xwk-h0-qdO" secondAttribute="trailing" constant="20" id="lB0-64-glR"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="aY0-CE-hDX" secondAttribute="bottom" constant="20" id="lMQ-DF-LES"/>
                             <constraint firstItem="Lo1-FL-kzB" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" constant="50" id="qWc-HF-zyZ"/>
                             <constraint firstItem="aY0-CE-hDX" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="t6o-Wt-K1C"/>
+                            <constraint firstItem="NTH-A2-p5G" firstAttribute="top" secondItem="xwk-h0-qdO" secondAttribute="top" id="zDp-zr-9M5"/>
                         </constraints>
                     </view>
                     <connections>
@@ -82,8 +134,12 @@
         </scene>
     </scenes>
     <resources>
-        <image name="lion" width="249" height="263"/>
-        <image name="ok" width="1266" height="818"/>
-        <image name="shiba" width="742" height="694"/>
+        <image name="Blue" width="200" height="155"/>
+        <image name="Brown" width="200" height="155"/>
+        <image name="Green" width="200" height="155"/>
+        <image name="Orange" width="200" height="155"/>
+        <image name="Pink" width="200" height="155"/>
+        <image name="Red" width="200" height="155"/>
+        <image name="Yellow" width="200" height="155"/>
     </resources>
 </document>
