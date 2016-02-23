@@ -63,9 +63,9 @@ public class CircularImageCollectionViewCell: UICollectionViewCell {
     }
 }
 
-// MARK: - Circular Dotted Collection View Cell
+// MARK: - Circular Dotted Decoration View
 
-public class CircularDottedCollectionViewCell: UICollectionViewCell {
+public class CircularDottedDecorationView: UICollectionReusableView {
     override public func layoutSubviews() {
         super.layoutSubviews()
         let circleLayer = CAShapeLayer()
@@ -90,7 +90,10 @@ public class CircularDottedCollectionViewCell: UICollectionViewCell {
       UIView.animateWithDuration to configure the actual speed / delay / damping of the animation
 */
 public class TastePickingScrollBarFlowLayout: UICollectionViewFlowLayout {
+    public var dottedCircleCount = 5
+
     var insertedIndexPath:NSIndexPath?
+    var decorationViewAttribute = UICollectionViewLayoutAttributes(forDecorationViewOfKind: "dottedCircle", withIndexPath: NSIndexPath(index: 0))
     
     public override init() {
         super.init()
@@ -104,6 +107,7 @@ public class TastePickingScrollBarFlowLayout: UICollectionViewFlowLayout {
     
     func commonInit() {
         scrollDirection = .Horizontal
+        registerClass(CircularDottedDecorationView.self, forDecorationViewOfKind: "dottedCircle")
     }
     
     override public func initialLayoutAttributesForAppearingItemAtIndexPath(itemIndexPath: NSIndexPath) -> UICollectionViewLayoutAttributes? {
@@ -129,6 +133,21 @@ public class TastePickingScrollBarFlowLayout: UICollectionViewFlowLayout {
             }?.indexPathAfterUpdate
     }
     
+    public override func layoutAttributesForElementsInRect(rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
+        guard let attrs = super.layoutAttributesForElementsInRect(rect) else { return nil }
+        var decorationViewAttrs: [UICollectionViewLayoutAttributes] = []
+        
+        for var i = 0; i < dottedCircleCount; i++ {
+            let attr = UICollectionViewLayoutAttributes(forDecorationViewOfKind: "dottedCircle", withIndexPath: NSIndexPath(forItem: i, inSection: 0))
+            let x = CGFloat(i) * (itemSize.width + minimumInteritemSpacing)
+            let h = itemSize.height
+            attr.frame = CGRectMake(x, 0, h, h) // calculate here
+            decorationViewAttrs.append(attr)
+        }
+        
+        return attrs + decorationViewAttrs
+    }
+    
     override public func finalizeCollectionViewUpdates() {
         super.finalizeCollectionViewUpdates()
         
@@ -141,12 +160,11 @@ public class TastePickingScrollBarFlowLayout: UICollectionViewFlowLayout {
 // MARK: - Taste Picking Scroll Bar
 
 public class TastePickingScrollBar: UICollectionView {
-
-    enum CellType: String {
-        case CircularImageCell
-        case CircularDottedCell
-    }
     
+    let CircularImageCellReuseIdentifier = "CircularImageCellReuseIdentifier"
+    
+    public var dottedCircleCount = 5
+
     override public init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
         super.init(frame: frame, collectionViewLayout: layout)
         commonInit()
@@ -158,10 +176,11 @@ public class TastePickingScrollBar: UICollectionView {
     }
     
     func commonInit() {
-        collectionViewLayout = TastePickingScrollBarFlowLayout()
+        let layout = TastePickingScrollBarFlowLayout()
+        layout.dottedCircleCount = dottedCircleCount
+        collectionViewLayout = layout
         showsHorizontalScrollIndicator = false
-        registerClass(CircularImageCollectionViewCell.self, forCellWithReuseIdentifier: CellType.CircularImageCell.rawValue)
-        registerClass(CircularDottedCollectionViewCell.self, forCellWithReuseIdentifier: CellType.CircularDottedCell.rawValue)
+        registerClass(CircularImageCollectionViewCell.self, forCellWithReuseIdentifier: CircularImageCellReuseIdentifier)
     }
     
     // Override insert animation so the insert animation is a spring animation
@@ -172,10 +191,6 @@ public class TastePickingScrollBar: UICollectionView {
     }
     
     public func dequeueCircularImageCellForIndexPath(indexPath: NSIndexPath) -> CircularImageCollectionViewCell {
-        return dequeueReusableCellWithReuseIdentifier(CellType.CircularImageCell.rawValue, forIndexPath: indexPath) as! CircularImageCollectionViewCell
-    }
-    
-    public func dequeueCircularDottedCellForIndexPath(indexPath: NSIndexPath) -> CircularDottedCollectionViewCell {
-        return dequeueReusableCellWithReuseIdentifier(CellType.CircularDottedCell.rawValue, forIndexPath: indexPath) as! CircularDottedCollectionViewCell
+        return dequeueReusableCellWithReuseIdentifier(CircularImageCellReuseIdentifier, forIndexPath: indexPath) as! CircularImageCollectionViewCell
     }
 }

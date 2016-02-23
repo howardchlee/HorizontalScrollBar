@@ -39,9 +39,8 @@ extension ViewController: UICollectionViewDataSource {
     }
 
     public func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        //let cell = horizontalCollectionView.dequeueCircularImageCellForIndexPath(indexPath)
-        //cell.image = self.selectedItems[indexPath.item]
-        let cell = horizontalCollectionView.dequeueCircularDottedCellForIndexPath(indexPath)
+        let cell = horizontalCollectionView.dequeueCircularImageCellForIndexPath(indexPath)
+        cell.image = self.selectedItems[indexPath.item]
         return cell
     }
 }
