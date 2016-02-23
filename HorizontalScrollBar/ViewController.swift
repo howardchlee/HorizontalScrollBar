@@ -27,9 +27,15 @@ public class ViewController: UIViewController {
 
     @IBAction func buttonTapped(sender: UIButton) {
         if let image = sender.imageView?.image {
-            let newIndexPath = NSIndexPath(forItem: selectedItems.count, inSection: 0)
-            selectedItems.append(image)
-            self.horizontalCollectionView.insertItemsAtIndexPaths([newIndexPath])
+            if selectedItems.contains(image) {
+                let index = selectedItems.indexOf(image)!
+                selectedItems.removeAtIndex(index)
+                horizontalCollectionView.deleteItemsAtIndexPaths([NSIndexPath(forItem: index, inSection: 0)])
+            } else {
+                let newIndexPath = NSIndexPath(forItem: selectedItems.count, inSection: 0)
+                selectedItems.append(image)
+                self.horizontalCollectionView.insertItemsAtIndexPaths([newIndexPath])
+            }
         }
     }
 }
