@@ -28,6 +28,7 @@ public class CircularImageCollectionViewCell: UICollectionViewCell {
     // MARK: Private properties
     @IBOutlet var imageView: UIImageView!
     
+    // MARK: Init Methods
     override public init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
@@ -62,12 +63,31 @@ public class CircularImageCollectionViewCell: UICollectionViewCell {
     }
 }
 
-// Mark: - Taste Picking Scroll Bar Flow Layout
+// MARK: - Circular Dotted Collection View Cell
+
+public class CircularDottedCollectionViewCell: UICollectionViewCell {
+    override public func layoutSubviews() {
+        super.layoutSubviews()
+        let circleLayer = CAShapeLayer()
+        layer.addSublayer(circleLayer)
+
+        let path = UIBezierPath(ovalInRect: bounds)
+        let dashes: [CGFloat] = [12]
+        circleLayer.path = path.CGPath
+        circleLayer.lineDashPattern = dashes
+        circleLayer.fillColor = UIColor.clearColor().CGColor
+        circleLayer.lineWidth = 2
+        circleLayer.strokeColor = UIColor(red: 210.0/255.0, green: 210.0/255.0, blue: 210.0/255.0, alpha: 1).CGColor
+    }
+}
+
+// MARK: - Taste Picking Scroll Bar Flow Layout
 
 /** Custom flow layout for the taste picking scroll bar.  This scroll bar does several things:
     - Defaults the scroll direction to horizontal
     - Scrolls the collection view to the last item after an insert
-    - Custom appearance / disappearance animation using Affine Transformation
+    - Custom appearance / disappearance animation using Affine Transformation. The collection view can use
+      UIView.animateWithDuration to configure the actual speed / delay / damping of the animation
 */
 public class TastePickingScrollBarFlowLayout: UICollectionViewFlowLayout {
     var insertedIndexPath:NSIndexPath?
@@ -118,8 +138,15 @@ public class TastePickingScrollBarFlowLayout: UICollectionViewFlowLayout {
     }
 }
 
+// MARK: - Taste Picking Scroll Bar
+
 public class TastePickingScrollBar: UICollectionView {
 
+    enum CellType: String {
+        case CircularImageCell
+        case CircularDottedCell
+    }
+    
     override public init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
         super.init(frame: frame, collectionViewLayout: layout)
         commonInit()
@@ -132,6 +159,23 @@ public class TastePickingScrollBar: UICollectionView {
     
     func commonInit() {
         collectionViewLayout = TastePickingScrollBarFlowLayout()
-        registerClass(CircularImageCollectionViewCell.self, forCellWithReuseIdentifier: "circularCell")
+        showsHorizontalScrollIndicator = false
+        registerClass(CircularImageCollectionViewCell.self, forCellWithReuseIdentifier: CellType.CircularImageCell.rawValue)
+        registerClass(CircularDottedCollectionViewCell.self, forCellWithReuseIdentifier: CellType.CircularDottedCell.rawValue)
+    }
+    
+    // Override insert animation so the insert animation is a spring animation
+    override public func insertItemsAtIndexPaths(indexPaths: [NSIndexPath]) {
+        UIView.animateWithDuration(1, delay: 0, usingSpringWithDamping: 0.55, initialSpringVelocity: 1, options: [], animations: { () -> Void in
+            super.insertItemsAtIndexPaths(indexPaths)
+            }, completion: nil)
+    }
+    
+    public func dequeueCircularImageCellForIndexPath(indexPath: NSIndexPath) -> CircularImageCollectionViewCell {
+        return dequeueReusableCellWithReuseIdentifier(CellType.CircularImageCell.rawValue, forIndexPath: indexPath) as! CircularImageCollectionViewCell
+    }
+    
+    public func dequeueCircularDottedCellForIndexPath(indexPath: NSIndexPath) -> CircularDottedCollectionViewCell {
+        return dequeueReusableCellWithReuseIdentifier(CellType.CircularDottedCell.rawValue, forIndexPath: indexPath) as! CircularDottedCollectionViewCell
     }
 }

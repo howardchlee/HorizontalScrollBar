@@ -28,9 +28,7 @@ public class ViewController: UIViewController {
         if let image = sender.imageView?.image {
             let newIndexPath = NSIndexPath(forItem: selectedItems.count, inSection: 0)
             selectedItems.append(image)
-            UIView.animateWithDuration(1, delay: 0, usingSpringWithDamping: 0.55, initialSpringVelocity: 1, options: [], animations: { () -> Void in
-                self.horizontalCollectionView.insertItemsAtIndexPaths([newIndexPath])
-                }, completion: nil)
+            self.horizontalCollectionView.insertItemsAtIndexPaths([newIndexPath])
         }
     }
 }
@@ -41,8 +39,9 @@ extension ViewController: UICollectionViewDataSource {
     }
 
     public func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = horizontalCollectionView.dequeueReusableCellWithReuseIdentifier("circularCell", forIndexPath: indexPath) as! CircularImageCollectionViewCell
-        cell.image = self.selectedItems[indexPath.item]
+        //let cell = horizontalCollectionView.dequeueCircularImageCellForIndexPath(indexPath)
+        //cell.image = self.selectedItems[indexPath.item]
+        let cell = horizontalCollectionView.dequeueCircularDottedCellForIndexPath(indexPath)
         return cell
     }
 }
