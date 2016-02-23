@@ -52,8 +52,8 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aY0-CE-hDX" customClass="TastePickingScrollBar" customModule="HorizontalScrollBar" customModuleProvider="target">
-                                <rect key="frame" x="20" y="520" width="560" height="60"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <rect key="frame" x="0.0" y="520" width="600" height="60"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="7xF-ro-O9s"/>
                                 </constraints>
@@ -116,11 +116,11 @@
                             <constraint firstItem="RTB-77-uKT" firstAttribute="leading" secondItem="Lo1-FL-kzB" secondAttribute="trailing" constant="20" id="bxG-Fw-on5"/>
                             <constraint firstItem="xwk-h0-qdO" firstAttribute="top" secondItem="DIt-Rr-pCj" secondAttribute="bottom" constant="50" id="dn0-h8-5N8"/>
                             <constraint firstItem="Lo1-FL-kzB" firstAttribute="leading" secondItem="DIt-Rr-pCj" secondAttribute="trailing" constant="20" id="eEv-zB-Ba6"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="aY0-CE-hDX" secondAttribute="trailing" id="gso-hm-giM"/>
+                            <constraint firstAttribute="trailing" secondItem="aY0-CE-hDX" secondAttribute="trailing" id="gso-hm-giM"/>
                             <constraint firstItem="NTH-A2-p5G" firstAttribute="leading" secondItem="xwk-h0-qdO" secondAttribute="trailing" constant="20" id="lB0-64-glR"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="aY0-CE-hDX" secondAttribute="bottom" constant="20" id="lMQ-DF-LES"/>
                             <constraint firstItem="Lo1-FL-kzB" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" constant="50" id="qWc-HF-zyZ"/>
-                            <constraint firstItem="aY0-CE-hDX" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="t6o-Wt-K1C"/>
+                            <constraint firstItem="aY0-CE-hDX" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="t6o-Wt-K1C"/>
                             <constraint firstItem="NTH-A2-p5G" firstAttribute="top" secondItem="xwk-h0-qdO" secondAttribute="top" id="zDp-zr-9M5"/>
                         </constraints>
                     </view>

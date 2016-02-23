@@ -19,6 +19,7 @@ public class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         horizontalCollectionView.dataSource = self
         horizontalCollectionView.delegate = self
+        horizontalCollectionView.contentInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 0)
         let layout = horizontalCollectionView.collectionViewLayout as! TastePickingScrollBarFlowLayout
         let height = horizontalCollectionView.bounds.height
         layout.itemSize = CGSizeMake(height, height)

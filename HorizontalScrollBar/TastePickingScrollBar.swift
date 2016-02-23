@@ -62,10 +62,20 @@ public class CircularImageCollectionViewCell: UICollectionViewCell {
 // MARK: - Circular Dotted Decoration View
 
 public class CircularDottedDecorationView: UICollectionReusableView {
+    var circleLayer = CAShapeLayer()
+
+    required public init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        layer.addSublayer(circleLayer)
+    }
+    
+    override public init(frame: CGRect) {
+        super.init(frame: frame)
+        layer.addSublayer(circleLayer)
+    }
+    
     override public func layoutSubviews() {
         super.layoutSubviews()
-        let circleLayer = CAShapeLayer()
-        layer.addSublayer(circleLayer)
 
         let path = UIBezierPath(ovalInRect: bounds)
         let dashes: [CGFloat] = [12]
@@ -152,8 +162,8 @@ public class TastePickingScrollBarFlowLayout: UICollectionViewFlowLayout {
         for var i = 0; i < dottedCircleCount; i++ {
             let attr = UICollectionViewLayoutAttributes(forDecorationViewOfKind: "dottedCircle", withIndexPath: NSIndexPath(forItem: i, inSection: 0))
             let x = CGFloat(i) * (itemSize.width + minimumInteritemSpacing)
-            let h = itemSize.height
-            attr.frame = CGRectMake(x, 0, h, h)
+            let diameter = itemSize.height
+            attr.frame = CGRect(x: x, y: 0, width: diameter, height: diameter)
             decorationViewAttrs.append(attr)
         }
         
@@ -163,9 +173,20 @@ public class TastePickingScrollBarFlowLayout: UICollectionViewFlowLayout {
     override public func finalizeCollectionViewUpdates() {
         super.finalizeCollectionViewUpdates()
         
+        guard let collectionView = collectionView else { return }
+        let nItems = collectionView.numberOfItemsInSection(0)
+
+        if nItems == 0 {
+            return
+        }
+        
+        let lastIndexPath = NSIndexPath(forItem: nItems - 1, inSection: 0)
         if inserting == true {
-            let indexPath = NSIndexPath(forItem: collectionView!.numberOfItemsInSection(0) - 1, inSection: 0)
-            collectionView?.scrollToItemAtIndexPath(indexPath, atScrollPosition: .Right, animated: true)
+            collectionView.scrollToItemAtIndexPath(lastIndexPath, atScrollPosition: .Right, animated: true)
+        } else {
+            if collectionView.visibleCells().contains(collectionView.cellForItemAtIndexPath(lastIndexPath)!) {
+                collectionView.scrollToItemAtIndexPath(lastIndexPath, atScrollPosition: .Right, animated: true)
+            }
         }
     }
 }
