@@ -8,17 +8,13 @@
 
 import UIKit
 
-// MARK: - Taste Pickable Protocol
-
-/// Protocol for a model that can be placed into taste picking scroll bar
-public protocol TastePickable {
-    var displayImage: UIImage { get }
-}
-
 // MARK: - Circular Image Collection View Cell
 
+/// The cell type used in Tast Picking horizontal scroll bar
 public class CircularImageCollectionViewCell: UICollectionViewCell {
     // MARK: Public properties
+
+    /// the image to be displayed in the collection view cell.
     public var image: UIImage? = nil {
         didSet {
             imageView?.image = image
@@ -88,10 +84,14 @@ public class CircularDottedDecorationView: UICollectionReusableView {
     - Scrolls the collection view to the last item after an insert
     - Custom appearance / disappearance animation using Affine Transformation. The collection view can use
       UIView.animateWithDuration to configure the actual speed / delay / damping of the animation
+    - Custom placeholder dotted circles
 */
 public class TastePickingScrollBarFlowLayout: UICollectionViewFlowLayout {
+
+    /// Specifies the number of placeholder dotted circles needed for the view
     public var dottedCircleCount = 5
     
+    /// Specifies whether the current update operation is an insert
     var inserting = false
     
     public override init() {
@@ -115,6 +115,8 @@ public class TastePickingScrollBarFlowLayout: UICollectionViewFlowLayout {
             attributes?.transform = CGAffineTransformMakeScale(0.1, 0.1)
             attributes?.alpha = 1.0
             if itemIndexPath.item > 0 {
+                // if the new item is going to appear outside the bounds of the collection view, we preset its frame to the last time
+                // so it would be created before the scroll view starts the scroll.
                 if attributes?.frame.maxX > collectionView?.bounds.maxX {
                     attributes?.frame = layoutAttributesForItemAtIndexPath(NSIndexPath(forItem: itemIndexPath.row - 1, inSection: 0))!.frame
                 }
@@ -201,6 +203,7 @@ public class TastePickingScrollBar: UICollectionView {
             }, completion: nil)
     }
     
+    // Convenience method for dequeuing a circular cell
     public func dequeueCircularImageCellForIndexPath(indexPath: NSIndexPath) -> CircularImageCollectionViewCell {
         return dequeueReusableCellWithReuseIdentifier(CircularImageCellReuseIdentifier, forIndexPath: indexPath) as! CircularImageCollectionViewCell
     }
