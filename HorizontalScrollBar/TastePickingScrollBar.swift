@@ -91,9 +91,8 @@ public class CircularDottedDecorationView: UICollectionReusableView {
 */
 public class TastePickingScrollBarFlowLayout: UICollectionViewFlowLayout {
     public var dottedCircleCount = 5
-
-    var insertedIndexPath:NSIndexPath?
-    var decorationViewAttribute = UICollectionViewLayoutAttributes(forDecorationViewOfKind: "dottedCircle", withIndexPath: NSIndexPath(index: 0))
+    
+    var inserting = false
     
     public override init() {
         super.init()
@@ -122,26 +121,35 @@ public class TastePickingScrollBarFlowLayout: UICollectionViewFlowLayout {
         return attributes
     }
     
+    override public func finalLayoutAttributesForDisappearingItemAtIndexPath(itemIndexPath: NSIndexPath) -> UICollectionViewLayoutAttributes? {
+        let attributes = super.finalLayoutAttributesForDisappearingItemAtIndexPath(itemIndexPath)
+        attributes?.transform = CGAffineTransformMakeScale(0.1, 0.1)
+        attributes?.alpha = 0
+        return attributes
+    }
+    
     override public func prepareForCollectionViewUpdates(updateItems: [UICollectionViewUpdateItem]) {
+        assert(updateItems.count == 1, "Taste Picking scroll bar can only handle one update operation at a time!")
         super.prepareForCollectionViewUpdates(updateItems)
         
-        let insertedIndexPaths = updateItems.filter({ (item) -> Bool in
-            return item.updateAction == .Insert
-        })
-        insertedIndexPath = insertedIndexPaths.maxElement { (leftItem, rightItem) -> Bool in
-            return leftItem.indexPathAfterUpdate!.row > rightItem.indexPathAfterUpdate!.row
-            }?.indexPathAfterUpdate
+        let updateItem = updateItems.first!
+        if updateItem.updateAction == .Insert {
+            inserting = true
+        } else {
+            inserting = false
+        }
     }
     
     public override func layoutAttributesForElementsInRect(rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
         guard let attrs = super.layoutAttributesForElementsInRect(rect) else { return nil }
         var decorationViewAttrs: [UICollectionViewLayoutAttributes] = []
         
+        // draw the dotted circles by pre-calculating where the cells would be.
         for var i = 0; i < dottedCircleCount; i++ {
             let attr = UICollectionViewLayoutAttributes(forDecorationViewOfKind: "dottedCircle", withIndexPath: NSIndexPath(forItem: i, inSection: 0))
             let x = CGFloat(i) * (itemSize.width + minimumInteritemSpacing)
             let h = itemSize.height
-            attr.frame = CGRectMake(x, 0, h, h) // calculate here
+            attr.frame = CGRectMake(x, 0, h, h)
             decorationViewAttrs.append(attr)
         }
         
@@ -151,9 +159,10 @@ public class TastePickingScrollBarFlowLayout: UICollectionViewFlowLayout {
     override public func finalizeCollectionViewUpdates() {
         super.finalizeCollectionViewUpdates()
         
-        guard let insertedIndexPath = insertedIndexPath else { return }
-        collectionView?.scrollToItemAtIndexPath(insertedIndexPath, atScrollPosition: .Right, animated: true)
-        self.insertedIndexPath = nil
+        if inserting == true {
+            let indexPath = NSIndexPath(forItem: collectionView!.numberOfItemsInSection(0) - 1, inSection: 0)
+            collectionView?.scrollToItemAtIndexPath(indexPath, atScrollPosition: .Right, animated: true)
+        }
     }
 }
 

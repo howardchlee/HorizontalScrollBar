@@ -18,6 +18,7 @@ public class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         horizontalCollectionView.dataSource = self
+        horizontalCollectionView.delegate = self
         let layout = horizontalCollectionView.collectionViewLayout as! TastePickingScrollBarFlowLayout
         let height = horizontalCollectionView.bounds.height
         layout.itemSize = CGSizeMake(height, height)
@@ -42,5 +43,12 @@ extension ViewController: UICollectionViewDataSource {
         let cell = horizontalCollectionView.dequeueCircularImageCellForIndexPath(indexPath)
         cell.image = self.selectedItems[indexPath.item]
         return cell
+    }
+}
+
+extension ViewController: UICollectionViewDelegate {
+    public func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        selectedItems.removeAtIndex(indexPath.item)
+        horizontalCollectionView.deleteItemsAtIndexPaths([indexPath]);
     }
 }
