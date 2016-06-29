@@ -37,11 +37,12 @@ public class CircularImageCollectionViewCell: UICollectionViewCell {
     
     func commonInit() {
         if imageView == nil {
-            imageView = UIImageView(frame: contentView.frame)
+            imageView = UIImageView()
+            imageView.translatesAutoresizingMaskIntoConstraints = false
             contentView.addSubview(imageView)
 
             let views = ["imageView": imageView]
-            contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[imageView]", options: [], metrics: nil, views: views))
+            contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[imageView]|", options: [], metrics: nil, views: views))
             contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[imageView]|", options: [], metrics: nil, views: views))
         }
     }
